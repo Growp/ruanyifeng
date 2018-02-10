@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+	<div id="result"></div>
+	<div id="list"></div>
+    <script>
+    	let basket={count:"同学A",onSale:"同学B"};
+    	//原方法
+    	// $('#result').append(
+    	//   'There are <b>' + basket.count + '</b> ' +
+    	//   'items in your basket, ' +
+    	//   '<em>' + basket.onSale +
+    	//   '</em> are on sale!'
+    	// );
+
+    	//ES6模板字符串
+    	//模板字符串是增强版的字符串，用反引号（`）标识。它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。
+    	//模板字符串中嵌入变量，需要将变量名写在${}之中。
+    	$('#result').append(`    		
+    		There are <b>${basket.count}</b><br>
+    		items in your basket, <em>${basket.onSale}</em>are on sale!
+`);
+    	$('#list').html(`
+    	<ul>
+    	  <li>first</li>
+    	  <li>second</li>
+    	</ul>
+    	`.trim());
+    	//string.trim 用于去除头尾空格
+
+    	//模板字符串之中还能调用函数。
+    	function fn() {
+    	  return "Hello World";
+    	}
+
+    	console.log(`foo ${fn()} bar`);
+    	// foo Hello World bar
+
+    	//如果需要引用模板字符串本身，在需要时执行，可以像下面这样写。
+    	// 写法一
+    	let str = 'return ' + '`Hello ${name}!`';
+    	let func = new Function('name', str);
+    	func('Jack') // "Hello Jack!"
+
+    	// 写法二
+    	//let str = '(name) => `Hello ${name}!`';
+    	//let func = eval.call(null, str);
+    	//func('Jack') // "Hello Jack!"
+    </script>
+</body>
+</html>

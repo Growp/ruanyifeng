@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//ES6 引入了块级作用域，明确允许在块级作用域之中声明函数。ES6 规定，块级作用域之中，函数声明语句的行为类似于let，在块级作用域之外不可引用。
+    	//1.允许在块级作用域内声明函数。
+		//2.函数声明类似于var，即会提升到全局作用域或函数作用域的头部。
+		//3.函数声明还会提升到所在的块级作用域的头部。
+		// 浏览器的 ES6 环境
+		function f() { console.log('I am outside!'); }
+
+		(function () {
+		  if (false) {
+		    // 重复声明一次函数f
+		    function f() { console.log('I am inside!'); }
+		  }
+
+		  f();
+		}());
+		// Uncaught TypeError: f is not a function
+		
+		// 上面的代码在符合 ES6 的浏览器中，都会报错，因为实际运行的是下面的代码。
+		function f() { console.log('I am outside!'); }
+		(function () {
+		  var f = undefined;
+		  if (false) {
+		    function f() { console.log('I am inside!'); }
+		  }
+
+		  f();
+		}());
+		// Uncaught TypeError: f is not a function
+		
+		//考虑到环境导致的行为差异太大，应该避免在块级作用域内声明函数。如果确实需要，也应该写成函数表达式，而不是函数声明语句。
+		// 函数声明语句
+		{
+		  let a = 'secret';
+		  function f() {
+		    return a;
+		  }
+		}
+
+		// 函数表达式
+		{
+		  let a = 'secret';
+		  let f = function () {
+		    return a;
+		  };
+		}
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//ES5没有块级作用域，只有全局作用域和局部作用域（函数作用域）
+    	//ES6有块级作用域，且外层作用域无法读取内层作用域的变量。
+    	//let不允许在相同作用域内，重复声明同一个变量。
+    	{{{{
+    	  {let insane = 'Hello World'}
+    	  console.log(insane); // 报错
+    	}}}};
+
+    	//块级作用域的出现使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了。
+    	// IIFE 写法
+    	(function () {
+    	  var tmp = ...;
+    	  ...
+    	}());
+
+    	// 块级作用域写法
+    	{
+    	  let tmp = ...;
+    	  ...
+    	}
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>模板标签复杂demo</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//literals为参数1数组部分，arguments为所有参数
+    	//因为标签模板变量两边必定为字符串（包括空字符串）
+    	//所以只需要一个参数1数组中的字符串和所有除第一参数外的参数累加就行
+    	let total = 30;
+    	let msg = passthru`The total is ${total} (${total*1.05} with tax)`;
+
+    	function passthru(literals) {
+    	  let result = '';
+    	  let i = 0;
+
+    	  while (i < literals.length) {
+    	    result += literals[i++];
+    	    if (i < arguments.length) {
+    	      result += arguments[i];
+    	    }
+    	  }
+    	  return result;
+    	}
+
+    	//等于下面的写法
+    	function passthru(literals, ...values) {
+    	  let output = "";
+    	  let index;
+    	  for (index = 0; index < values.length; index++) {
+    	    output += literals[index] + values[index];
+    	  }
+
+    	  output += literals[index]
+    	  return output;
+    	}
+    </script>
+</body>
+</html>

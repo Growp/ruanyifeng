@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//JavaScript 允许采用\uxxxx形式表示一个字符，其中xxxx表示字符的 Unicode 码点。
+    	"\u0061"
+    	// "a"
+    	//es6不受此限制只要在码点外加上{}就能正确就能正确解读码点数不固定的字符
+    	"\u{20BB7}"
+    	// "𠮷"
+
+    	"\u{41}\u{42}\u{43}"
+    	// "ABC"
+
+    	let hello = 123;
+    	hell\u{6F} // 123
+
+    	'\u{1F680}' === '\uD83D\uDE80'
+    	// true
+    </script>
+</body>
+</html>

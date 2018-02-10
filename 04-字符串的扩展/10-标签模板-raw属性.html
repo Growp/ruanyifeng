@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//模板处理函数的第一个参数（模板字符串数组），还有一个raw属性。
+    	console.log`123`
+    	// ["123", raw: Array[1]]
+    	
+    	tag`First line\nSecond line`
+
+    	function tag(strings) {
+    	  console.log(strings.raw[0]);
+    	  // strings.raw[0] 为 "First line\\nSecond line"
+    	  // 打印输出 "First line\nSecond line"
+    	}
+    	//***********ES6 String.raw方法也可以作为正常的函数使用
+    	String.raw({ raw: 'test' }, 0, 1, 2);
+    	// 't0e1s2t'
+
+    	// 等同于
+    	String.raw({ raw: ['t','e','s','t'] }, 0, 1, 2);
+    </script>
+</body>
+</html>

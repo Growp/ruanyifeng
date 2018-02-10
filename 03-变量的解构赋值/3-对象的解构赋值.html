@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	let {foo,bar}={foo:"aaa",bar:"bbb"};
+    	foo //"aaa"
+    	bar //"bbb"
+
+    	//p作为模式时
+    	let obj = {
+    	  p: [
+    	    'Hello',
+    	    { y: 'World' }
+    	  ]
+    	};
+
+    	let { p: [x, { y }] } = obj;
+    	x // "Hello"
+    	y // "World"
+
+    	//如果p作为变量赋值
+    	let obj = {
+    	  p: [
+    	    'Hello',
+    	    { y: 'World' }
+    	  ]
+    	};
+
+    	let { p, p: [x, { y }] } = obj;
+    	x // "Hello"
+    	y // "World"
+    	p // ["Hello", {y: "World"}]
+
+    	//另一个例子
+    	const node = {
+    	  loc: {
+    	    start: {
+    	      line: 1,
+    	      column: 5
+    	    }
+    	  }
+    	};
+
+    	let { loc, loc: { start }, loc: { start: { line }} } = node;
+    	line // 1
+    	loc  // Object {start: Object}
+    	start // Object {line: 1, column: 5}
+    	//上面代码有三次解构赋值，分别是对loc、start、line三个属性的解构赋值。注意，最后一次对line属性的解构赋值之中，只有line是变量，loc和start都是模式，不是变量。
+    </script>
+</body>
+</html>
