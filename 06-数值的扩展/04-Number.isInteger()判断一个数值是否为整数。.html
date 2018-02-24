@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//Number.isInteger()用来判断一个数值是否为整数。
+    	Number.isInteger(25);   // true
+    	Number.isInteger(25.1); // false
+
+    	//如果参数不是数值，Number.isInteger返回false。
+    	Number.isInteger() // false
+    	Number.isInteger(null) // false
+    	Number.isInteger('15') // false
+    	Number.isInteger(true) // false
+
+    	//由于 JavaScript 采用 IEEE 754 标准，数值存储为64位双精度格式，数值精度最多可以达到 53 个二进制位（1 个隐藏位与 52 个有效位）。如果数值的精度超过这个限度，第54位及后面的位就会被丢弃，这种情况下，Number.isInteger可能会误判。
+    	Number.isInteger(3.0000000000000002) // true
+    </script>
+</body>
+</html>

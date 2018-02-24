@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//y修饰符的作用与g修饰符类似，也是全局匹配
+    	//区别在于y修饰符在每次开始位置就符合匹配才会继续下去
+    	//下面r2改成/a+_/y就可以匹配两次了  第一次为aaa_,第二次为aa_
+    	//y修饰符号隐含了头部匹配的标志^，y修饰符的设计本意，就是让头部匹配的标志^在全局匹配中都有效。
+    	var s = 'aaa_aa_a';
+    	var r1 = /a+/g;
+    	var r2 = /a+/y;
+
+    	r1.exec(s) // ["aaa"]
+    	r2.exec(s) // ["aaa"]
+
+    	r1.exec(s) // ["aa"]
+    	r2.exec(s) // null
+    	//y和replace例子
+    	const REGEX = /a/gy;
+    	'aaxa'.replace(REGEX, '-') // '--xa'
+    	//y和match的例子
+    	'a1a2a3'.match(/a\d/y) // ["a1"]
+    	'a1a2a3'.match(/a\d/gy) // ["a1", "a2", "a3"]
+    </script>
+</body>
+</html>

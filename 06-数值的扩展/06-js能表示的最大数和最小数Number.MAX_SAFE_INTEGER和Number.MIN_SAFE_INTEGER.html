@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//JavaScript 能够准确表示的整数范围在-2^53到2^53之间（不含两个端点），超过这个范围，无法精确表示这个值。
+    	//ES6 引入了Number.MAX_SAFE_INTEGER和Number.MIN_SAFE_INTEGER这两个常量，用来表示这个范围的上下限。
+    	Number.MAX_SAFE_INTEGER === Math.pow(2, 53) - 1
+    	// true
+    	Number.MAX_SAFE_INTEGER === 9007199254740991
+    	// true
+
+    	Number.MIN_SAFE_INTEGER === -Number.MAX_SAFE_INTEGER
+    	// true
+    	Number.MIN_SAFE_INTEGER === -9007199254740991
+    	// true
+
+    	//Number.isSafeInteger()则是用来判断一个整数是否落在这个范围之内。
+    	Number.isSafeInteger('a') // false
+    	Number.isSafeInteger(null) // false
+    	Number.isSafeInteger(NaN) // false
+    	Number.isSafeInteger(Infinity) // false
+    	Number.isSafeInteger(-Infinity) // false
+
+    	Number.isSafeInteger(3) // true
+    	Number.isSafeInteger(1.2) // false
+    	Number.isSafeInteger(9007199254740990) // true
+    	Number.isSafeInteger(9007199254740992) // false
+
+    	Number.isSafeInteger(Number.MIN_SAFE_INTEGER - 1) // false
+    	Number.isSafeInteger(Number.MIN_SAFE_INTEGER) // true
+    	Number.isSafeInteger(Number.MAX_SAFE_INTEGER) // true
+    	Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1) // false
+
+    	//实际使用这个函数时，需要注意。验证运算结果是否落在安全整数的范围内，不要只验证运算结果，而要同时验证参与运算的每个值。
+    	Number.isSafeInteger(9007199254740993)
+    	// false
+    	Number.isSafeInteger(990)
+    	// true
+    	Number.isSafeInteger(9007199254740993 - 990)
+    	// true
+    	9007199254740993 - 990
+    	// 返回结果 9007199254740002
+    	// 正确答案应该是 9007199254740003
+
+    	//所以，如果只验证运算结果是否为安全整数，很可能得到错误结果。下面的函数可以同时验证两个运算数和运算结果。
+    	function trusty (left, right, result) {
+    	  if (
+    	    Number.isSafeInteger(left) &&
+    	    Number.isSafeInteger(right) &&
+    	    Number.isSafeInteger(result)
+    	  ) {
+    	    return result;
+    	  }
+    	  throw new RangeError('Operation cannot be trusted!');
+    	}
+
+    	trusty(9007199254740993, 990, 9007199254740993 - 990)
+    	// RangeError: Operation cannot be trusted!
+
+    	trusty(1, 2, 3)
+    	// 3
+    </script>
+</body>
+</html>

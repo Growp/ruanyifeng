@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	//先行断言
+    	//只匹配百分号之前的数字
+    	/\d+(?=%)/.exec('111%把卡巴卡');
+    	//先行否定断言
+    	//只匹配不在百分号之前的数字
+    	/\d+(?！=%)/.exec('111把卡巴卡');
+
+    	
+    	//后行断言(es2018引入)
+    	//只匹配百分号之后的数字
+    	/(?<=%)\d+/.exec('%111把卡巴卡');
+    	//后行否定断言
+    	//只匹配不在百分号之后的数字
+    	/\d+(?<!=%)/.exec('111把卡巴卡');
+    </script>
+</body>
+</html>

@@ -2,26 +2,22 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Examples</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="" rel="stylesheet">
+<title>菜鸟教程(runoob.com)</title>
 </head>
 <body>
-    <script>
-      　var name = "The Window";
-      　　var object = {
-      　　　　name : "My Object",
-      　　　　getNameFunc : function(){
-      　　　　　　var that = this;
-                 console.log(that);
-      　　　　　　return function(){
-      　　　　　　　　return that.name;
-      　　　　　　};
-      　　　　}
-      　　};
-      　　alert(object.getNameFunc()());
-    </script>
+
+<script>
+var str="Hello world! HelloHello";
+//查找"Hello"
+var patt=/Hello/g;
+var result=patt.exec(str);
+console.log(result);
+document.write("返回值: " +  result); 
+//查找 "RUNOOB"
+patt=/RUNOOB/g;
+result=patt.exec(str);
+document.write("<br>返回值: " +  result);
+</script>
+	
 </body>
 </html>
